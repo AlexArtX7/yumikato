@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#0d0020"/>
+<title>✨ Yumi Kato ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#0d0020;--bg1:#1a0533;--bg2:#2a0a4a;
+  --pink:#ff79c6;--purple:#bd93f9;--cyan:#8be9fd;
+  --yellow:#f1fa8c;--green:#50fa7b;
+  --white:#f8f8f2;--outline:#000;
+  --sh:5px 5px 0px #000;--sh-sm:3px 3px 0px #000;
+  --sh-hover:0px 10px 0px #000;--sh-active:0px 2px 0px #000;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Quicksand',system-ui,sans-serif;
+  background:var(--bg0);
+  background-image:
+    radial-gradient(ellipse at 20% 20%,rgba(189,147,249,.14) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 80%,rgba(255,121,198,.11) 0%,transparent 50%);
+  min-height:100vh;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(189,147,249,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(189,147,249,.05) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+@keyframes float{0%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(5deg)}100%{transform:translateY(0) rotate(-3deg)}}
+@keyframes floatB{0%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-15px) rotate(-4deg)}100%{transform:translateY(0) rotate(6deg)}}
+@keyframes floatC{0%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-12px) rotate(-5deg)}100%{transform:translateY(0) rotate(2deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes spinBadge{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(-5deg) scale(1.12)}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}20%{transform:scale(1.3)}40%{transform:scale(1)}60%{transform:scale(1.15)}}
+@keyframes shimmer{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+@keyframes holoShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes cardGlow{0%,100%{box-shadow:var(--sh),0 0 0 0 rgba(189,147,249,0)}50%{box-shadow:var(--sh),0 0 22px 6px rgba(189,147,249,.4)}}
+@keyframes avatarGlow{0%,100%{box-shadow:var(--sh),0 0 0 0 rgba(255,121,198,0)}50%{box-shadow:var(--sh),0 0 0 7px rgba(255,121,198,.32),0 0 28px 10px rgba(189,147,249,.18)}}
+@keyframes typeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes ripple{to{transform:scale(3);opacity:0}}
+@keyframes starSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.bg-char{position:fixed;z-index:0;pointer-events:none;filter:drop-shadow(0 0 10px rgba(189,147,249,.45))}
+.bg-char img{display:block;border-radius:50%;border:3px solid #000}
+.bc1{top:20px;left:-6px;width:108px;animation:float 4s ease-in-out infinite;opacity:.42}
+.bc2{top:16px;right:-4px;width:90px;animation:floatB 5.2s ease-in-out infinite;opacity:.4}
+.bc3{bottom:90px;left:2px;width:78px;animation:floatC 6.5s ease-in-out infinite;opacity:.36}
+.bc4{bottom:70px;right:-4px;width:95px;animation:float 4.8s ease-in-out infinite 2.3s;opacity:.4}
+@media(max-width:340px){.bg-char{display:none}}
+
+.star-p{position:fixed;z-index:0;pointer-events:none;animation:starSpin 8s linear infinite,floatB 4s ease-in-out infinite;opacity:.18;user-select:none}
+
+.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:36px 14px calc(80px + var(--safe-b))}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:30px;text-align:center}
+.avatar-wrap{position:relative;display:inline-block;animation:fadeUp .45s .05s both}
+.avatar-img{
+  width:130px;height:130px;border-radius:50%;
+  border:4px solid var(--outline);
+  animation:avatarGlow 3s ease-in-out infinite;
+  overflow:hidden;position:relative;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  display:block;
+}
+.avatar-img::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,121,198,.2) 0%,rgba(189,147,249,.2) 50%,rgba(139,233,253,.2) 100%);
+  background-size:200% 200%;animation:holoShift 4s ease infinite;
+  pointer-events:none;z-index:2;mix-blend-mode:screen;
+}
+.avatar-img:hover{transform:scale(1.05) rotate(-2deg)}
+.avatar-img img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;display:block}
+
+.vip-badge{
+  position:absolute;bottom:4px;right:-14px;
+  background:linear-gradient(135deg,#bd93f9,#ff79c6);
+  color:#fff;font-family:'Fredoka One',cursive;font-size:11px;
+  padding:5px 11px;border-radius:999px;
+  border:3px solid var(--outline);box-shadow:var(--sh-sm);
+  animation:spinBadge 3s ease-in-out infinite;
+  white-space:nowrap;user-select:none;
+}
+.hero-name{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(2.3rem,9vw,3.8rem);line-height:1.05;
+  background:linear-gradient(90deg,var(--pink) 0%,var(--purple) 25%,var(--cyan) 50%,var(--green) 75%,var(--pink) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeUp .45s .12s both,shimmer 4s linear infinite;
+  filter:drop-shadow(0 0 10px rgba(189,147,249,.55));
+}
+.hero-handle{
+  font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;
+  color:rgba(248,248,242,.4);letter-spacing:1.5px;margin-top:-8px;
+  animation:fadeUp .45s .18s both;
+}
+.type-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;animation:fadeUp .45s .22s both}
+.type-pill{
+  font-family:'Fredoka One',cursive;font-size:12px;letter-spacing:.4px;
+  padding:5px 14px;border-radius:999px;
+  border:2.5px solid var(--outline);box-shadow:var(--sh-sm);
+  animation:typeFloat 3s ease-in-out infinite;user-select:none;
+}
+.tp-fairy{background:linear-gradient(135deg,#ff79c6,#ffb3de);color:#1a0533;animation-delay:0s}
+.tp-psych{background:linear-gradient(135deg,#bd93f9,#8a5fe6);color:#fff;animation-delay:.3s}
+.tp-fire{background:linear-gradient(135deg,#f1fa8c,#ffb86c);color:#1a0533;animation-delay:.6s}
+.bio-pill{
+  display:inline-block;
+  background:rgba(255,255,255,.06);
+  border:2px solid rgba(189,147,249,.4);
+  color:var(--white);backdrop-filter:blur(8px);
+  font-family:'Quicksand',sans-serif;font-weight:700;font-size:14px;
+  padding:9px 22px;border-radius:999px;
+  box-shadow:0 0 12px rgba(189,147,249,.2);
+  animation:fadeUp .45s .28s both;
+}
+
+/* Ticker */
+.ticker-wrap{
+  width:100%;overflow:hidden;
+  background:linear-gradient(90deg,var(--bg1),var(--bg2),var(--bg1));
+  border:3px solid rgba(189,147,249,.4);
+  box-shadow:var(--sh-sm),0 0 14px rgba(189,147,249,.18);
+  border-radius:999px;padding:8px 0;margin-bottom:24px;
+  animation:fadeUp .45s .36s both;
+}
+.ticker-inner{display:flex;white-space:nowrap;animation:ticker 18s linear infinite;width:max-content}
+.t-text{font-family:'Fredoka One',cursive;font-size:13px;padding:0 22px;letter-spacing:.4px}
+.t-text:nth-child(1){color:var(--pink)}.t-text:nth-child(2){color:var(--purple)}
+.s{margin:0 10px}
+
+/* Links */
+.links-grid{display:grid;grid-template-columns:1fr;gap:13px;margin-bottom:26px;animation:fadeUp .45s .4s both}
+.link-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:17px 18px;border-radius:14px;
+  border:3px solid var(--outline);box-shadow:var(--sh);
+  font-family:'Fredoka One',cursive;font-size:1.08rem;letter-spacing:.3px;
+  text-decoration:none;cursor:pointer;
+  transition:transform .12s cubic-bezier(.34,1.56,.64,1),box-shadow .12s ease;
+  position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:56px;
+}
+.link-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);
+  transform:translateX(-100%);transition:transform .5s ease;pointer-events:none;
+}
+.link-btn:hover::before{transform:translateX(100%)}
+.link-btn:hover{transform:translateY(-2px);box-shadow:var(--sh-hover)}
+.link-btn:active{transform:translateY(6px);box-shadow:var(--sh-active)}
+
+/* Main button — add your link to href */
+.btn-holo{
+  background:linear-gradient(135deg,#1a0533,#2d0d52,#1a0533);
+  color:var(--white);animation:cardGlow 3s ease-in-out infinite;padding:22px 22px;
+}
+.btn-holo .holo-t{
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan),var(--yellow),var(--pink));
+  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:shimmer 3s linear infinite;font-size:1.18rem;
+}
+.btn-holo .sub{display:block;font-family:'Quicksand',sans-serif;font-size:12px;font-weight:700;color:rgba(248,248,242,.5);margin-top:4px}
+.btn-inner{display:flex;flex-direction:column;align-items:center;gap:2px}
+.btn-tg{background:linear-gradient(135deg,#0a1f3d,#0d2d5e);color:#5bb3f0;border-color:rgba(91,179,240,.4);box-shadow:var(--sh),0 0 8px rgba(91,179,240,.2)}
+.btn-ig{background:linear-gradient(135deg,#3d0a1f,#6e1a40);color:var(--pink);border-color:rgba(255,121,198,.4);box-shadow:var(--sh),0 0 8px rgba(255,121,198,.2)}
+.btn-tt{background:linear-gradient(135deg,#0a1a1a,#0d3030);color:var(--cyan);border-color:rgba(139,233,253,.4);box-shadow:var(--sh),0 0 8px rgba(139,233,253,.2)}
+.btn-throne{background:linear-gradient(135deg,#2a1a0a,#4a3010);color:var(--yellow);border-color:rgba(241,250,140,.4);box-shadow:var(--sh),0 0 8px rgba(241,250,140,.15)}
+
+/* Diary + Gallery */
+.dg-row{display:flex;flex-direction:column;gap:20px;animation:fadeUp .45s .48s both}
+@media(min-width:600px){
+  .dg-row{flex-direction:row;align-items:flex-start}
+  .diary-col{flex:0 0 36%}
+  .gallery-col{flex:1;min-width:0}
+}
+.diary-card{
+  background:linear-gradient(145deg,#1a0533,#2a0a4a);
+  border:3px solid rgba(189,147,249,.5);
+  box-shadow:var(--sh),0 0 18px rgba(189,147,249,.18);
+  border-radius:16px;position:relative;overflow:hidden;padding:0 18px 40px;
+}
+.diary-card::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(189,147,249,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(189,147,249,.04) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+.diary-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan),var(--green),var(--yellow));background-size:200% auto;animation:shimmer 3s linear infinite}
+.diary-tape{position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-3deg);background:linear-gradient(90deg,rgba(189,147,249,.7),rgba(255,121,198,.7));width:74px;height:22px;border-radius:3px;border:1.5px solid rgba(189,147,249,.4);animation:pulse 3s ease-in-out infinite;z-index:2}
+.diary-set{position:absolute;top:13px;right:13px;font-size:19px;opacity:.28;animation:heartbeat 3s infinite;z-index:2}
+.diary-header{font-family:'Fredoka One',cursive;font-size:1.4rem;background:linear-gradient(90deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:32px 0 13px 8px;position:relative;z-index:1}
+.diary-entry{position:relative;z-index:1;padding-left:8px}
+.diary-row{font-size:13.5px;font-weight:600;line-height:2.1;display:flex;gap:5px;align-items:baseline}
+.diary-row .k{color:rgba(248,248,242,.36)}
+.diary-row .v{color:var(--white);font-weight:700}
+.diary-row .a{color:var(--pink)}
+.diary-row .b{color:var(--cyan)}
+.diary-sticker{position:absolute;bottom:10px;right:13px;font-size:26px;z-index:2;animation:heartbeat 2.5s ease-in-out infinite}
+
+.gallery-card{background:linear-gradient(145deg,#1a0533,#2a0a4a);border:3px solid rgba(139,233,253,.4);box-shadow:var(--sh),0 0 18px rgba(139,233,253,.12);border-radius:24px;padding:20px 18px 26px;display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;overflow:hidden}
+.gallery-card::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(139,233,253,.07) 2px,transparent 2px);background-size:20px 20px;pointer-events:none}
+.gallery-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));background-size:200% auto;animation:shimmer 3s linear infinite}
+.gallery-header{font-family:'Fredoka One',cursive;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;align-self:flex-start;position:relative;z-index:1}
+
+/* CSS-only slider — no external libraries */
+.css-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:14px;padding:10px 4px 14px;scrollbar-width:none;width:100%;position:relative;z-index:1;mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%)}
+.css-slider::-webkit-scrollbar{display:none}
+.css-slide{flex:0 0 220px;height:290px;scroll-snap-align:center;border-radius:20px;border:3px solid rgba(189,147,249,.5);box-shadow:5px 5px 0 #000,0 0 18px rgba(189,147,249,.25);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:64px;line-height:1;cursor:grab;user-select:none;transition:transform .2s ease}
+.css-slide:active{cursor:grabbing}
+.css-slide:hover{transform:scale(1.02)}
+.css-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:17px}
+.s-emoji{position:relative;z-index:1}
+.s-holo{position:absolute;inset:0;pointer-events:none;z-index:2;border-radius:17px;background:linear-gradient(105deg,transparent 25%,rgba(255,121,198,.14) 30%,rgba(189,147,249,.14) 40%,rgba(139,233,253,.14) 50%,rgba(80,250,123,.1) 60%,transparent 65%);background-size:200% 200%;animation:holoShift 5s ease infinite;mix-blend-mode:screen}
+.s-stripe{position:absolute;top:0;left:0;right:0;height:36px;background:linear-gradient(180deg,rgba(0,0,0,.48),transparent);z-index:3;pointer-events:none;border-radius:17px 17px 0 0}
+.sbadge{position:absolute;z-index:4;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);color:#fff;font-family:'Fredoka One',cursive;font-size:11px;padding:4px 10px;border-radius:999px;border:2px solid rgba(189,147,249,.5);pointer-events:none;white-space:nowrap}
+.btl{top:40px;left:10px;transform:rotate(-5deg)}
+.bbl{bottom:13px;left:9px;transform:rotate(4deg)}
+.bbr{bottom:13px;right:9px;transform:rotate(-5deg)}
+.sl1{background:linear-gradient(145deg,#2a0a4a,#4a1a6a)}
+.sl2{background:linear-gradient(145deg,#3d0f2a,#6a1a50)}
+.sl3{background:linear-gradient(145deg,#0a2a3d,#1a4a6a)}
+.sl4{background:linear-gradient(145deg,#1a2a0a,#2a4a10)}
+.sl5{background:linear-gradient(145deg,#3d2a0a,#6a4a10)}
+@media(min-width:500px){.css-slide{flex:0 0 240px;height:310px}}
+
+.slider-dots{display:flex;gap:7px;justify-content:center;position:relative;z-index:1}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(189,147,249,.3);border:1.5px solid rgba(189,147,249,.5);cursor:pointer;transition:background .25s,transform .25s}
+.dot.active{background:var(--purple);transform:scale(1.3)}
+.slider-hint{font-family:'Quicksand',sans-serif;font-size:12px;font-weight:700;color:rgba(189,147,249,.45);animation:pulse 2.5s ease-in-out infinite;user-select:none;letter-spacing:.3px;position:relative;z-index:1}
+
+/* Footer */
+.footer{text-align:center;margin-top:44px;animation:fadeUp .45s .58s both}
+.footer-badge{display:inline-block;background:rgba(189,147,249,.08);border:2px solid rgba(189,147,249,.28);backdrop-filter:blur(8px);font-family:'Fredoka One',cursive;font-size:13px;padding:7px 20px;border-radius:999px;box-shadow:var(--sh-sm),0 0 10px rgba(189,147,249,.12)}
+.footer-badge .holo-t{background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));background-size:200% auto;animation:shimmer 3s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-sub{margin-top:7px;font-family:'Quicksand',sans-serif;font-size:11px;font-weight:700;color:rgba(248,248,242,.22);letter-spacing:.5px}
+
+@media(max-width:499px){.page{padding-left:12px;padding-right:12px}.link-btn{font-size:.97rem;padding:14px 12px}}
+@media(max-width:320px){.avatar-img{width:108px;height:108px}}
+</style>
+</head>
+<body>
+
+<!-- Background decorative elements — replace src with your own transparent PNGs -->
+<div class="bg-char bc1" aria-hidden="true">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='108'%3E%3Ccircle cx='54' cy='54' r='52' fill='%232a0a4a'/%3E%3Ctext x='54' y='72' font-size='52' text-anchor='middle'%3E🌸%3C/text%3E%3C/svg%3E" alt="" width="108" loading="lazy"/>
+</div>
+<div class="bg-char bc2" aria-hidden="true">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Ccircle cx='45' cy='45' r='43' fill='%233d0f2a'/%3E%3Ctext x='45' y='61' font-size='44' text-anchor='middle'%3E✨%3C/text%3E%3C/svg%3E" alt="" width="90" loading="lazy"/>
+</div>
+<div class="bg-char bc3" aria-hidden="true">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='78' height='78'%3E%3Ccircle cx='39' cy='39' r='37' fill='%230a2a3d'/%3E%3Ctext x='39' y='53' font-size='38' text-anchor='middle'%3E💜%3C/text%3E%3C/svg%3E" alt="" width="78" loading="lazy"/>
+</div>
+<div class="bg-char bc4" aria-hidden="true">
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='95' height='95'%3E%3Ccircle cx='47.5' cy='47.5' r='45.5' fill='%231a2a0a'/%3E%3Ctext x='47' y='63' font-size='46' text-anchor='middle'%3E🎀%3C/text%3E%3C/svg%3E" alt="" width="95" loading="lazy"/>
+</div>
+
+<main class="page">
+
+  <!-- Profile section -->
+  <section class="hero" aria-label="Profile">
+    <div class="avatar-wrap">
+      <!-- Profile photo: upload your photo to the repo and replace "your-photo.jpg" -->
+      <div class="avatar-img">
+        <img src="yumi.jpg" alt="Yumi Kato"/>
+      </div>
+      <div class="vip-badge">Yumi ✨</div>
+    </div>
+    <h1 class="hero-name">Yumi Kato</h1>
+    <p class="hero-handle">@yumika.to</p>
+    <div class="type-row">
+      <div class="type-pill tp-fire">♈ Aries</div>
+      <div class="type-pill tp-fairy">🌸 Anime</div>
+      <div class="type-pill tp-psych">🎮 Gamer</div>
+    </div>
+    <div class="bio-pill">Your fav anime girl 💜✨</div>
+  </section>
+
+  <!-- Scrolling ticker -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="t-text">✨ Yumi Kato <span class="s">◆</span> Anime Girl <span class="s">◆</span> 19 y.o. <span class="s">◆</span> Aries ♈ <span class="s">◆</span> Gamer 🎮 <span class="s">◆</span> @yumika.to <span class="s">◆</span> 💜 Follow me 💜 <span class="s">◆</span></span>
+      <span class="t-text">✨ Yumi Kato <span class="s">◆</span> Anime Girl <span class="s">◆</span> 19 y.o. <span class="s">◆</span> Aries ♈ <span class="s">◆</span> Gamer 🎮 <span class="s">◆</span> @yumika.to <span class="s">◆</span> 💜 Follow me 💜 <span class="s">◆</span></span>
+    </div>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="links-grid" aria-label="Links">
+
+    <!-- Main button — paste your link into href below -->
+    <a href="https://dnboi9.s.gy/yIw49b" class="link-btn btn-holo" target="_blank" rel="noopener noreferrer">
+      <div class="btn-inner">
+        <div class="holo-t">💜 My Exclusive Content ⭐</div>
+        <span class="sub">✨ Members only — join now ✨</span>
+      </div>
+    </a>
+
+    <!-- Telegram -->
+    <a href="https://dnboi9.s.gy/FnCpIa" class="link-btn btn-tg" target="_blank" rel="noopener noreferrer">
+      ✈️ Telegram Channel
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://dnboi9.s.gy/EVdMIX" class="link-btn btn-ig" target="_blank" rel="noopener noreferrer">
+      📸 Instagram
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://dnboi9.s.gy/rABOYC" class="link-btn btn-tt" target="_blank" rel="noopener noreferrer">
+      🎵 TikTok
+    </a>
+
+    <!-- Gift wishlist -->
+    <a href="https://dnboi9.s.gy/jgezWX" class="link-btn btn-throne" target="_blank" rel="noopener noreferrer">
+      🎁 Buy me a gift
+    </a>
+
+  </nav>
+
+  <!-- About + Gallery -->
+  <div class="dg-row">
+
+    <div class="diary-col">
+      <article class="diary-card">
+        <div class="diary-tape" aria-hidden="true"></div>
+        <div class="diary-set" aria-hidden="true">✦</div>
+        <h2 class="diary-header">About me 💜</h2>
+        <div class="diary-entry">
+          <div class="diary-row"><span class="k">☁️ Age:</span><span class="v">19</span></div>
+          <div class="diary-row"><span class="k">♈ Sign:</span><span class="v">Aries</span></div>
+          <div class="diary-row"><span class="k">🌸 Vibe:</span><span class="v a">Anime &amp; kawaii</span></div>
+          <div class="diary-row"><span class="k">🎮 Loves:</span><span class="v">Gaming all night</span></div>
+          <div class="diary-row"><span class="k">🎌 Fav:</span><span class="v a">Shoujo manga</span></div>
+          <div class="diary-row"><span class="k">🍡 Drink:</span><span class="v">Matcha latte</span></div>
+          <div class="diary-row"><span class="k">🎵 Music:</span><span class="v">J-Pop &amp; Lo-Fi</span></div>
+          <div class="diary-row"><span class="k">💌 DMs:</span><span class="v b">Always open~</span></div>
+        </div>
+        <div class="diary-sticker" aria-hidden="true">💜</div>
+      </article>
+    </div>
+
+    <div class="gallery-col">
+      <div class="gallery-card">
+        <h2 class="gallery-header">📸 Gallery</h2>
+        <!--
+          Gallery slides: replace the emoji div with a real photo:
+          <img src="photo1.jpg" alt="Photo"/>
+          Upload photos to the repo alongside index.html
+        -->
+        <div class="css-slider" id="slider" role="region" aria-label="Photo gallery">
+          <div class="css-slide sl1">
+            <div class="s-holo"></div><div class="s-stripe"></div>
+            <img src="photo1.jpg" alt="Photo"/>
+            <div class="sbadge btl">✨ Yumi</div>
+            <div class="sbadge bbr">@yumika.to</div>
+          </div>
+          <div class="css-slide sl2">
+            <div class="s-holo"></div><div class="s-stripe"></div>
+            <img src="photo2.jpg" alt="Photo"/>
+            <div class="sbadge btl">🎮 Gamer mode</div>
+            <div class="sbadge bbl">level 99 ⭐</div>
+          </div>
+          <div class="css-slide sl3">
+            <div class="s-holo"></div><div class="s-stripe"></div>
+            <img src="photo3.jpg" alt="Photo"/>
+            <div class="sbadge btl">💜 Anime girl</div>
+            <div class="sbadge bbr">kawaii~</div>
+          </div>
+          <div class="css-slide sl4">
+            <div class="s-holo"></div><div class="s-stripe"></div>
+            <img src="photo4.jpg" alt="Photo"/>
+            <div class="sbadge btl">🎀 Cosplay</div>
+            <div class="sbadge bbl">soft mode 🌸</div>
+          </div>
+          <div class="css-slide sl5">
+            <div class="s-holo"></div><div class="s-stripe"></div>
+            <img src="photo5.jpg" alt="Photo"/>
+            <div class="sbadge btl">⭐ ur fav~</div>
+            <div class="sbadge bbr">follow me!</div>
+          </div>
+        </div>
+        <div class="slider-dots" id="dots" aria-hidden="true">
+          <div class="dot active" data-idx="0"></div>
+          <div class="dot" data-idx="1"></div>
+          <div class="dot" data-idx="2"></div>
+          <div class="dot" data-idx="3"></div>
+          <div class="dot" data-idx="4"></div>
+        </div>
+        <p class="slider-hint">← swipe →</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-badge"><span class="holo-t">✨ Yumi Kato · @yumika.to · 2025 ✨</span></div>
+    <p class="footer-sub">Anime girl · Aries ♈ · yumika.to</p>
+  </footer>
+
+</main>
+
+<script>
+/* Slider dot indicators */
+(function(){
+  const slider=document.getElementById('slider');
+  const dots=document.querySelectorAll('.dot');
+  if(!slider||!dots.length)return;
+  dots.forEach(dot=>{
+    dot.addEventListener('click',()=>{
+      const idx=parseInt(dot.dataset.idx);
+      const slides=slider.querySelectorAll('.css-slide');
+      if(slides[idx])slides[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    });
+  });
+  let ticking=false;
+  slider.addEventListener('scroll',()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const slides=slider.querySelectorAll('.css-slide');
+        const center=slider.scrollLeft+slider.offsetWidth/2;
+        let closest=0,minDist=Infinity;
+        slides.forEach((sl,i)=>{
+          const dist=Math.abs(sl.offsetLeft+sl.offsetWidth/2-center);
+          if(dist<minDist){minDist=dist;closest=i;}
+        });
+        dots.forEach((d,i)=>d.classList.toggle('active',i===closest));
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+})();
+
+/* Button ripple effect */
+(function(){
+  const s=document.createElement('style');
+  s.textContent='@keyframes ripple{to{transform:scale(3);opacity:0}}';
+  document.head.appendChild(s);
+  document.querySelectorAll('.link-btn').forEach(btn=>{
+    btn.addEventListener('pointerdown',e=>{
+      const r=btn.getBoundingClientRect(),sz=Math.max(r.width,r.height);
+      const el=document.createElement('span');
+      el.style.cssText=`position:absolute;border-radius:50%;width:${sz}px;height:${sz}px;left:${e.clientX-r.left-sz/2}px;top:${e.clientY-r.top-sz/2}px;background:rgba(189,147,249,.25);transform:scale(0);pointer-events:none;z-index:20;animation:ripple .55s ease forwards;`;
+      btn.appendChild(el);setTimeout(()=>el.remove(),600);
+    });
+  });
+})();
+
+/* Ambient star particles */
+(function(){
+  const ST=['✦','✧','⭐','💜','🌸','✨','💫','🎀'];
+  for(let i=0;i<10;i++){
+    const s=document.createElement('div');s.className='star-p';
+    s.textContent=ST[Math.floor(Math.random()*ST.length)];
+    s.style.cssText=`left:${Math.random()*93}vw;top:${Math.random()*88}vh;font-size:${9+Math.random()*9}px;animation-duration:${6+Math.random()*6}s,${3+Math.random()*4}s;animation-delay:${Math.random()*4}s,${Math.random()*3}s;`;
+    document.body.appendChild(s);
+  }
+})();
+
+/* Mouse parallax — desktop only */
+(function(){
+  if(window.matchMedia('(pointer:coarse)').matches)return;
+  document.addEventListener('mousemove',e=>{
+    const x=(e.clientX/window.innerWidth-.5)*16;
+    const y=(e.clientY/window.innerHeight-.5)*16;
+    document.querySelectorAll('.bg-char').forEach((el,i)=>{
+      el.style.transform=`translate(${x*(i+1)*.38}px,${y*(i+1)*.38}px)`;
+    });
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
